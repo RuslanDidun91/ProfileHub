@@ -1,11 +1,9 @@
-import Nav from './components/Nav/Nav';
+import Nav from './components/Nav';
 import { useState } from "react";
-import Main from './pages/Main';
 import { Paper } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import './App.css';
-import UserList from './components/test';
-
+import UserPage from './pages/UsersPage';
 
 function App() {
 
@@ -20,14 +18,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Paper style={{ height: "250vh" }}>
-        <div className="App">
           <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
-          <h1>Dark Mode</h1>
-          <Nav />
-          <Main />
-          <UserList />
-
-        </div>
+          <UserPage />
       </Paper>
     </ThemeProvider>
 

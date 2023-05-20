@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
-const getUsers = async () => {
+export const getUsers = async () => {
   const response = await fetch('https://api.poc.graphql.dev.vnplatform.com/graphql', {
     method: 'POST',
     headers: {
@@ -39,26 +37,3 @@ const getUsers = async () => {
   console.log(data);
   return data.data.getAllProfiles.profiles;
 };
-
-const UserList = () => {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    getUsers().then((users) => {
-      setUsers(users);
-    });
-  }, []);
-
-  return (
-    <div>
-      <h1>User List</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.first_name} {user.last_name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
-
-export default UserList;

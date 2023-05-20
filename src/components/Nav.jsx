@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Switch from '@material-ui/core/Switch';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -14,9 +16,11 @@ const Nav = ({ check, change }) => {
   const classes = useStyles();
 
   return (
-    <AppBar className={classes.appBar}>
+    <AppBar className={classes.appBar} position='relative'>
       <Toolbar className={classes.toolbar}>
-        <Typography variant="h6">Viral Nation</Typography>
+        <ExpandMoreIcon fontSize='large' color='white'/>
+        <Typography variant="h6">iral Nation</Typography>
+        <LightModeIcon />
         <Switch
           defaultChecked
           color="default"
@@ -24,6 +28,7 @@ const Nav = ({ check, change }) => {
           onChange={change}
           checked={check}
         />
+        <DarkModeIcon />
       </Toolbar>
     </AppBar>
   );
