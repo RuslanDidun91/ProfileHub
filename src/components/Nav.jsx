@@ -26,7 +26,6 @@ const Nav = ({ check, change }) => {
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <LightModeIcon />
           <Switch
-            defaultChecked
             color="default"
             inputProps={{ 'aria-label': 'checkbox with default color' }}
             onChange={change}

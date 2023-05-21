@@ -2,9 +2,12 @@ import Nav from './components/Nav';
 import { useState } from "react";
 import { Paper } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import UserPage from './pages/UsersPage';
+import UsersPage from './pages/UsersPage';
 import Search from './components/Search';
+import CreateProfile from './pages/create-profile';
+import EditProfile from './pages/edit-profile';
 
 function App() {
 
@@ -18,15 +21,18 @@ function App() {
 
   return (
     <>
-    {/* <ThemeProvider theme={theme}>  */}
-      {/* <Paper style={{ height: "250vh" }}> */}
-          <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
-          <Search/>
-          <UserPage />
-      {/* </Paper> */}
-       {/* </ThemeProvider>  */}
+      <Router>
+        <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
+        <Search />
+        <Switch>
+          <Route exact path="/" component={UsersPage} />
+          <Route path="/new" component={CreateProfile} />
+          <Route path="/edit/:id" component={EditProfile} />
+        </Switch>
+      </Router>
     </>
   );
 }
 
 export default App;
+

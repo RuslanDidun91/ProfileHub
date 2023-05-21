@@ -15,20 +15,20 @@ const UsersPage = () => {
   }, []);
 
   return (
-    <Container container maxWidth="md">
-      <Grid container >
+    <Container maxWidth="md">
+      <Grid container spacing={2}>
         {users?.map((user) => (
-          <Grid xs={12} sm={6} md={4} key={user.id}>
-            <UserCard
-              key={user.id}
-              image={user.image_url}
-              name={user.first_name}
-              surname={user.last_name}
-              email={user.email}
-              description={user.description}
-            />
+          <Grid item xs={12} sm={6} md={4} key={user.id}>
+              <UserCard
+                key={user.id}
+                image={user.image_url}
+                name={user.first_name}
+                surname={user.last_name}
+                email={user.email}
+                description={user.description}
+              />
             <br />
-           </Grid>
+          </Grid>
         ))}
       </Grid>
     </Container>

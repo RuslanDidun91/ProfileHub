@@ -18,7 +18,9 @@ const UserCard = ({ image, name, surname, email, description }) => {
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-  }; const [anchorEl, setAnchorEl] = useState(null);
+  }; 
+  
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -50,7 +52,7 @@ const UserCard = ({ image, name, surname, email, description }) => {
           <CardMedia
             component="img"
             image={image}
-            alt="card image"
+            alt="user avatar"
             sx={{ borderRadius: '50%', width: '64px', height: '64px', objectFit: 'cover' }}
           />
           <Box >
