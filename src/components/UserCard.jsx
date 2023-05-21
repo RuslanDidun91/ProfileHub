@@ -1,38 +1,60 @@
-import { Container } from '@material-ui/core';
+import React, { useState } from 'react';
 import {
   Typography,
   Box,
   Card,
   CardMedia,
-  CardContent,
-  Stack,
+  Menu,
+  MenuItem,
+  ListItemIcon,
 } from "@mui/material";
+import { Container } from '@material-ui/core';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const UserCard = ({ image, name, surname, email, description }) => {
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  }; const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleEditProfile = () => {
+    // TODO: Handle edit profile action
+    handleClose();
+  };
+
+  const handleDeleteProfile = () => {
+    // TODO: Handle delete profile action
+    handleClose();
+  };
+
   return (
-    <Container>
+    <Container >
       <Card sx={{
-        maxWidth: "342px",
+        minWidth: "232px",
         minHeight: "120px",
-        padding: "30px",
+        padding: "20px",
         cursor: "pointer",
         display: 'flex',
         flexDirection: 'column',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderRadius: '8px'
       }}>
         <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '10px', justifyContent: 'space-between' }}>
           <CardMedia
             component="img"
-            width="64px"
-            height="64px"
             image={image}
             alt="card image"
             sx={{ borderRadius: '50%', width: '64px', height: '64px', objectFit: 'cover' }}
           />
           <Box >
-            <Typography sx={{display: 'flex', margin: '5px'}}>
+            <Typography sx={{ display: 'flex', margin: '5px' }}>
               <strong>{name} {surname}</strong>
               <VerifiedIcon color="primary" />
             </Typography>
@@ -40,12 +62,37 @@ const UserCard = ({ image, name, surname, email, description }) => {
               {email}
             </Typography>
           </Box>
-          <MoreVertIcon color="action" />
+          <MoreVertIcon color="action" onClick={handleClick} />
         </Box>
-        <Box sx={{ textAlign: 'center'}}>
-          {description}
-        </Box>
+        <Box sx={{ textAlign: 'center' }}> {description}</Box>
       </Card>
+
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem onClick={handleEditProfile}>
+          <ListItemIcon>
+            <EditIcon fontSize="small" />
+          </ListItemIcon>
+          Edit Profile
+        </MenuItem>
+        <MenuItem onClick={handleDeleteProfile}>
+          <ListItemIcon>
+            <DeleteIcon fontSize="small" />
+          </ListItemIcon>
+          Delete Profile
+        </MenuItem>
+      </Menu>
     </Container>
   )
 }

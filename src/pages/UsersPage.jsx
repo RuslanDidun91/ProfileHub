@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers } from '../utils/fetchFromApi';
 import UserCard from '../components/UserCard';
-import { Container, Grid, makeStyles } from '@material-ui/core';
+import { Container, Grid } from '@material-ui/core';
 
 
 const UsersPage = () => {
