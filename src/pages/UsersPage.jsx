@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers } from '../utils/fetchFromApi';
 import UserCard from '../components/UserCard';
+import { Container, Grid, makeStyles } from '@material-ui/core';
 
-const UserPage = () => {
+
+const UsersPage = () => {
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -12,22 +15,24 @@ const UserPage = () => {
   }, []);
 
   return (
-    <div>
-      <h1>User List</h1>
-      <ul>
+    <Container container maxWidth="md">
+      <Grid container >
         {users?.map((user) => (
-          <UserCard
-            key={user.id}
-            image={user.image_url}
-            name={user.first_name}
-            surname={user.last_name}
-            email={user.email}
-            description={user.description}
-          />
+          <Grid xs={12} sm={6} md={4} key={user.id}>
+            <UserCard
+              key={user.id}
+              image={user.image_url}
+              name={user.first_name}
+              surname={user.last_name}
+              email={user.email}
+              description={user.description}
+            />
+            <br />
+           </Grid>
         ))}
-      </ul>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 
-export default UserPage;
+export default UsersPage;

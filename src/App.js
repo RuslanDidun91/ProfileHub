@@ -4,6 +4,7 @@ import { Paper } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import './App.css';
 import UserPage from './pages/UsersPage';
+import Search from './components/Search';
 
 function App() {
 
@@ -16,13 +17,15 @@ function App() {
   })
 
   return (
-    <ThemeProvider theme={theme}>
-      <Paper style={{ height: "250vh" }}>
+    <>
+    {/* <ThemeProvider theme={theme}>  */}
+      {/* <Paper style={{ height: "250vh" }}> */}
           <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
+          <Search/>
           <UserPage />
-      </Paper>
-    </ThemeProvider>
-
+      {/* </Paper> */}
+       {/* </ThemeProvider>  */}
+    </>
   );
 }
 
