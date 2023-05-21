@@ -23,7 +23,14 @@ const Search = () => {
 
   return (
     <Container maxWidth="md">
-      <Box style={{ display: 'flex', alignItems: 'center', marginTop: '50px', marginBottom: '50px', border: '1px solid #ccc', borderRadius: '4px' }}>
+      <Box style={{
+        display: 'flex',
+        alignItems: 'center',
+        marginTop: '50px',
+        marginBottom: '50px',
+        border: '1px solid #ccc',
+        borderRadius: '4px'
+      }}>
         <InputBase
           placeholder="Search..."
           value={searchText}
@@ -32,8 +39,11 @@ const Search = () => {
         />
         <CreateProfilePopup />
         <ToggleButtonGroup orientation="horizontal"
-          sx={{ marginTop: { xs: '10px', md: 0 }, marginLeft: { xs: 0, md: '10px' }, display: { xs: 'none', md: 'flex' } }}
-        >
+          sx={{
+            marginTop: { xs: '10px', md: 0 },
+            marginLeft: { xs: 0, md: '10px' },
+            display: { xs: 'none', md: 'flex' }
+          }}>
           <ToggleButton value="module" aria-label="module">
             <ViewModuleIcon />
           </ToggleButton>
