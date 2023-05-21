@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { deleteProfileApi } from '../../utils/deleteProfileApi';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const DeleteProfilePopup = ({ open, handleClose, handleDelete, profileId, onDelete }) => {
@@ -20,8 +22,10 @@ const DeleteProfilePopup = ({ open, handleClose, handleDelete, profileId, onDele
       // Call the handleDelete function provided by the parent component
       handleDelete();
       onDelete(profileId);
+      toast.success('Profile deleted successfully');
     } catch (error) {
       console.error('Error deleting profile:', error);
+      toast.error('Error deleting profile');
     }
   };
 

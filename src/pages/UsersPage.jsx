@@ -32,8 +32,6 @@ const UsersPage = () => {
       });
   };
 
- 
-
   return (
     <Container maxWidth="md">
       <Grid container spacing={2}>
@@ -48,6 +46,7 @@ const UsersPage = () => {
               description={user.description}
               onDelete={handleDeleteUser}
               profileId={user.id}
+              users={users}
             />
             <br />
           </Grid>
