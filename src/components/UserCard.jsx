@@ -21,9 +21,13 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
   const [anchorEl, setAnchorEl] = useState(null);
   const [openEditProfileDialog, setOpenEditProfileDialog] = useState(false);
   const [openDeleteProfileDialog, setOpenDeleteProfileDialog] = useState(false);
+  const [currentProfileId, setCurrentProfileId] = useState(profileId);
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    const clickedUser = users.find((user) => user.id === profileId);
+    setCurrentProfileId(clickedUser)
   };
 
   const handleClose = () => {
@@ -121,6 +125,8 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
         open={openEditProfileDialog}
         handleClose={handleCloseDialog}
         users={users}
+        profileId={profileId}
+        currentProfileId={currentProfileId}
       />
       <DeleteProfilePopup
         profileId={profileId}

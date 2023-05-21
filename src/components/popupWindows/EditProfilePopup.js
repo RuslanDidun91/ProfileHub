@@ -1,58 +1,3 @@
-// import React from 'react';
-// import {
-//   Button,
-//   Dialog,
-//   DialogTitle,
-//   DialogContent,
-//   DialogActions,
-//   TextField,
-//   Switch,
-//   IconButton,
-//   Stack,
-// } from '@mui/material';
-// import CloseIcon from '@mui/icons-material/Close';
-// import { editProfileApi } from '../../utils/editProfileApi';
-
-// const EditProfileDialog = ({ open, handleClose }) => {
-
-//   const internalHandleClose = () => {
-//     handleClose();
-//   };
-
-//   return (
-//     <Dialog open={open} onClose={internalHandleClose}>
-//       <DialogTitle>
-//         <IconButton aria-label="close" sx={{ position: 'absolute', right: 8, top: 8 }} onClick={handleClose}>
-//           <CloseIcon />
-//         </IconButton>
-//         Edit Profile
-//       </DialogTitle>
-//       <DialogContent>
-//         <Stack spacing={2}>
-//           <TextField label="Image Link" fullWidth />
-//           <Stack direction="row" spacing={2}>
-//             <TextField label="First Name" sx={{ flex: 1 }} />
-//             <TextField label="Last Name" sx={{ flex: 1 }} />
-//           </Stack>
-//           <TextField label="Email" fullWidth />
-//           <TextField label="Description" fullWidth />
-//           <Stack direction="row" alignItems="center" justifyContent="space-between">
-//             <label>Talent is verified</label>
-//             <Switch />
-//           </Stack>
-//         </Stack>
-//       </DialogContent>
-//       <DialogActions>
-//         <Button
-//           sx={{ backgroundColor: '#3DACFF', color: 'white' }}
-//           onClick={handleClose}>Edit Profile</Button>
-//       </DialogActions>
-//     </Dialog>
-//   );
-// };
-
-// export default EditProfileDialog;
-
 import React, { useState, useEffect } from 'react';
 import {
   Button,
@@ -68,35 +13,51 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import { editProfileApi } from '../../utils/editProfileApi';
 
-const EditProfileDialog = ({ open, handleClose, users }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [description, setDescription] = useState('');
-  const [isVerified, setIsVerified] = useState(false);
+const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
+
+  const [inputs, setInputs] = useState({
+    id: currentProfileId,
+    firstName: '',
+    lastName: '',
+    email: '',
+    imageUrl: '',
+    description: '',
+    isVerified: false,
+  });
 
   useEffect(() => {
-    if (users && users.length > 0) {
-      users.forEach((user, index) => {
-        // Set the input values for each user
-        setFirstName(user.first_name || '');
-        setLastName(user.last_name || '');
-        setEmail(user.email || '');
-        setImageUrl(user.image_url || '');
-        setDescription(user.description || '');
-        setIsVerified(user.is_verified || false);
+    // Find the user with the matching currentProfileId
+    const currentProfile = users.find((user) => user.id === currentProfileId);
+    // Update the inputs state with the profile data
+    if (currentProfile) {
+      setInputs({
+        firstName: currentProfile.first_name,
+        lastName: currentProfile.last_name,
+        email: currentProfile.email,
+        imageUrl: currentProfile.image_url,
+        description: currentProfile.description,
+        isVerified: currentProfile.is_verified,
       });
     }
-  }, [users]);
+  }, [currentProfileId, users]);
+
+  const { firstName, lastName, email, imageUrl, description, isVerified } = inputs;
 
   const internalHandleClose = () => {
     handleClose();
   };
 
+  const handleInputChange = (name, value) => {
+    setInputs(prevInputs => ({
+      ...prevInputs,
+      [name]: value,
+    }));
+  };
+
   const handleEditProfile = () => {
     // Construct the profile object with updated information
     const updatedProfile = {
+      currentProfileId,
       firstName,
       lastName,
       email,
@@ -104,16 +65,14 @@ const EditProfileDialog = ({ open, handleClose, users }) => {
       description,
       isVerified,
     };
-
+    console.log(updatedProfile);
     // Call the editProfileApi function with the updated profile
     editProfileApi(updatedProfile)
       .then(() => {
-        // Handle success
         console.log('Profile updated successfully!');
         handleClose();
       })
       .catch(error => {
-        // Handle error
         console.error('Error updating profile:', error);
       });
   };
@@ -128,16 +87,44 @@ const EditProfileDialog = ({ open, handleClose, users }) => {
       </DialogTitle>
       <DialogContent>
         <Stack spacing={2}>
-          <TextField label="Image Link" fullWidth value={imageUrl} onChange={e => setImageUrl(e.target.value)} />
+          <TextField
+            label="Image Link"
+            fullWidth
+            value={imageUrl}
+            onChange={e => handleInputChange('imageUrl', e.target.value)}
+          />
           <Stack direction="row" spacing={2}>
-            <TextField label="First Name" sx={{ flex: 1 }} value={firstName} onChange={e => setFirstName(e.target.value)} />
-            <TextField label="Last Name" sx={{ flex: 1 }} value={lastName} onChange={e => setLastName(e.target.value)} />
+            <TextField
+              label="First Name"
+              sx={{ flex: 1 }}
+              value={firstName}
+              onChange={e => handleInputChange('firstName', e.target.value)}
+            />
+            <TextField
+              label="Last Name"
+              sx={{ flex: 1 }}
+              value={lastName}
+              onChange={e => handleInputChange('lastName', e.target.value)}
+            />
           </Stack>
-          <TextField label="Email" fullWidth value={email} onChange={e => setEmail(e.target.value)} />
-          <TextField label="Description" fullWidth value={description} onChange={e => setDescription(e.target.value)} />
+          <TextField
+            label="Email"
+            fullWidth
+            value={email}
+            onChange={e => handleInputChange('email', e.target.value)}
+          />
+          <TextField
+            label="Description"
+            fullWidth
+            value={description}
+            onChange={e => handleInputChange('description', e.target.value)}
+          />
           <Stack direction="row" alignItems="center" justifyContent="space-between">
             <label>Talent is verified</label>
-            <Switch checked={isVerified} onChange={e => setIsVerified(e.target.checked)} />
+            <Switch
+              checked={isVerified}
+              onChange={e => handleInputChange('isVerified', e.target.checked)}
+            />
           </Stack>
         </Stack>
       </DialogContent>

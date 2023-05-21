@@ -1,6 +1,10 @@
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
-export const editProfileApi = () => {
+export const editProfileApi = (updatedProfile) => {
+  const { id, firstName, lastName, email, isVerified, imageUrl, description } = updatedProfile;
+
+  console.log(updatedProfile);
+
   const requestOptions = {
     method: 'POST',
     headers: {
@@ -9,7 +13,14 @@ export const editProfileApi = () => {
     },
     body: JSON.stringify({
       query: `
-        mutation UpdateProfile($updateProfileId: String!, $firstName: String!, $lastName: String!, $email: String!, $isVerified: Boolean!, $imageUrl: String!, $description: String!) {
+        mutation UpdateProfile(
+          $updateProfileId: String!, 
+          $firstName: String!, 
+          $lastName: String!, 
+          $email: String!, 
+          $isVerified: Boolean!, 
+          $imageUrl: String!, 
+          $description: String!) {
           updateProfile(
             id: $updateProfileId,
             first_name: $firstName,
@@ -30,20 +41,32 @@ export const editProfileApi = () => {
         }
       `,
       variables: {
-        updateProfileId: 'hrrcQa1J3oxwTDE52a0E',
-        firstName: 'test',
-        lastName: 'updated',
-        email: 'test@updated.com',
-        isVerified: false,
-        imageUrl: 'test.com',
-        description: 'test updated'
+        updateProfileId: id,
+        firstName,
+        lastName,
+        email,
+        isVerified,
+        imageUrl,
+        description
       }
     })
   };
 
-  fetch('https://api.poc.graphql.dev.vnplatform.com/graphql', requestOptions)
-    .then(response => response.json())
+  return fetch('https://api.poc.graphql.dev.vnplatform.com/graphql', requestOptions)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error: API request failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.errors) {
+        throw new Error(`GraphQL Error: ${data.errors[0].message}`);
+      }
+      return data;
+    })
     .catch(error => {
       console.error('Error:', error);
+      throw error;
     });
 };
