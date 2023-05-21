@@ -13,11 +13,14 @@ import VerifiedIcon from '@mui/icons-material/Verified';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditProfilePopup from './EditProfilePopup';
+import EditProfilePopup from './popupWindows/EditProfilePopup';
+import DeleteProfilePopup from './popupWindows/DeleteProfilePopup';
 
-const UserCard = ({ image, name, surname, email, description }) => {
+const UserCard = ({ profileId, image, name, surname, email, description, onDelete }) => {
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [openEditProfileDialog, setOpenEditProfileDialog] = useState(false);
+  const [openDeleteProfileDialog, setOpenDeleteProfileDialog] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -34,10 +37,16 @@ const UserCard = ({ image, name, surname, email, description }) => {
 
   const handleDeleteProfile = () => {
     handleClose();
+    setOpenDeleteProfileDialog(true);
   };
 
   const handleCloseDialog = () => {
     setOpenEditProfileDialog(false);
+    setOpenDeleteProfileDialog(false);
+  };
+
+  const handleDelete = () => {
+    handleCloseDialog();
   };
 
   return (
@@ -52,14 +61,16 @@ const UserCard = ({ image, name, surname, email, description }) => {
           flexDirection: 'column',
           overflow: 'hidden',
           borderRadius: '8px',
-        }} >
+        }}
+      >
         <Box
           sx={{
             display: 'flex',
             alignItems: 'center',
             marginBottom: '10px',
             justifyContent: 'space-between',
-          }}>
+          }}
+        >
           <CardMedia
             component="img"
             image={image}
@@ -69,7 +80,8 @@ const UserCard = ({ image, name, surname, email, description }) => {
               width: '64px',
               height: '64px',
               objectFit: 'cover',
-            }} />
+            }}
+          />
           <Box>
             <Typography sx={{ display: 'flex', margin: '5px' }}>
               <strong>
@@ -88,8 +100,9 @@ const UserCard = ({ image, name, surname, email, description }) => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right', }}
-        transformOrigin={{ vertical: 'top', horizontal: 'right' }}>
+        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      >
         <MenuItem onClick={handleEditProfile}>
           <ListItemIcon>
             <EditIcon fontSize="small" />
@@ -100,11 +113,21 @@ const UserCard = ({ image, name, surname, email, description }) => {
           <ListItemIcon>
             <DeleteIcon fontSize="small" />
           </ListItemIcon>
-          Delete Profile
+          Remove Profile
         </MenuItem>
       </Menu>
-      {/* popup window */}
-      <EditProfilePopup open={openEditProfileDialog} handleClose={handleCloseDialog} />
+
+      <EditProfilePopup
+        open={openEditProfileDialog}
+        handleClose={handleCloseDialog}
+      />
+      <DeleteProfilePopup
+        profileId={profileId}
+        open={openDeleteProfileDialog}
+        handleClose={handleCloseDialog}
+        handleDelete={handleDelete}
+        onDelete={onDelete}
+      />
     </Container>
   );
 };

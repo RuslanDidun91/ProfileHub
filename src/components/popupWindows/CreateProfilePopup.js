@@ -12,7 +12,7 @@ import {
 } from '@mui/material';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import CloseIcon from '@mui/icons-material/Close';
-import { createProfileApi } from '../utils/createProfileApi';
+import { createProfileApi } from '../../utils/createProfileApi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

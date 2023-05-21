@@ -13,6 +13,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 
 const EditProfileDialog = ({ open, handleClose }) => {
+  
   const internalHandleClose = () => {
     handleClose();
   };

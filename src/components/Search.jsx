@@ -5,7 +5,7 @@ import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-import CreateProfilePopup from './CreateProfilePopup';
+import CreateProfilePopup from './popupWindows/CreateProfilePopup';
 
 const Search = () => {
   const [searchText, setSearchText] = useState('');
