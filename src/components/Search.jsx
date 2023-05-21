@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Container, InputBase, Box } from '@material-ui/core';
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { styled } from '@mui/material/styles';
 
 import CreateProfilePopup from './CreateProfilePopup';
 

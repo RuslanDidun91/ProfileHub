@@ -41,7 +41,9 @@ const EditProfileDialog = ({ open, handleClose }) => {
         </Stack>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose}>Edit Profile</Button>
+        <Button
+          sx={{ backgroundColor: '#3DACFF', color: 'white' }}
+          onClick={handleClose}>Edit Profile</Button>
       </DialogActions>
     </Dialog>
   );
