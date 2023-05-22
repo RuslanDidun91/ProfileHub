@@ -1,11 +1,8 @@
 <div align = "center">
 </br>
 </br>
-      
- <a>[<img src="https://i.imgur.com/z1xu36H.png" alt="Logo" width="120" height="120">](https://cloud-control.netlify.app/)
- </a>
  
-##### Profile Hub © 2023 
+## Profile Hub © 2023 
 </br>
 
 <div id="description" align="center">
@@ -26,8 +23,8 @@
 Profile Hub is a mobile-responsive React application that utilizes Material UI, offering both dark and light themes. It allows users to perform CRUD operations, enabling them to create, update, and delete their own profiles. Additionally, users can conveniently search and explore numerous other profiles available on the platform.
 
 ## Getting Started
- Check out this amazing app today via [GitHub link 👈](https://ruslandidun91.github.io/ProfileHub/) 
- Check out this amazing app today via [Netlify link 👈](https://profile-hub.netlify.app/) 
+ Check out this amazing app today via [GitHub link ](https://ruslandidun91.github.io/ProfileHub/) 
+ or [Netlify link 👈](https://profile-hub.netlify.app/) 
 
 
 <img src="https://i.imgur.com/p3h3Kfp.png" alt="Logo" width="700" height="500">
@@ -38,15 +35,14 @@ Profile Hub is a mobile-responsive React application that utilizes Material UI, 
 ## Upcoming Features
 
 - [x] Created and set up project, installed all packages and libraries.
-- [x] Made api call to openWeather API and added typescript, tailwindCSS.
-- [ ] implement search input and feature for adding favourite cities.
+- [x] Made api call to requested API and added CRUD ioperations.
+- [ ] implement my profile page, add ability to upload photos.
 
 ## Technologies  
 ![React](https://img.shields.io/badge/-React-05122A?style=flat&logo=React)
-![TypeScript](https://img.shields.io/badge/-TypeScript-05122A?style=flat&logo=TypeScript)
-![TailwindCSS](https://img.shields.io/badge/-TailwindCSS-05122A?style=flat&logo=TailwindCSS)
 ![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
 ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
+![MUI](https://img.shields.io/badge/-MUI-05122A?style=flat&logo=MUI)
 
 ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
 ![Google](https://img.shields.io/badge/-Google-05122A?style=flat&logo=Google)
