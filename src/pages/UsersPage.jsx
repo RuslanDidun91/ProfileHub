@@ -35,7 +35,7 @@ const UsersPage = () => {
 
   return (
     <Container maxWidth="md">
-      <Search setUsers={setUsers}/>
+      <Search setUsers={setUsers} users={users}/>
       <Grid container spacing={2}>
         {users?.map((user) => (
           <Grid item xs={12} sm={6} md={4} key={user.id}>
@@ -49,6 +49,7 @@ const UsersPage = () => {
               onDelete={handleDeleteUser}
               profileId={user.id}
               users={users}
+              isVerified={user.is_verified}
             />
             <br />
           </Grid>

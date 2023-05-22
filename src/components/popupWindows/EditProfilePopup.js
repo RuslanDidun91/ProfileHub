@@ -65,7 +65,6 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
       description,
       isVerified,
     };
-    console.log(updatedProfile);
     // Call the editProfileApi function with the updated profile
     editProfileApi(updatedProfile)
       .then(() => {

@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditProfilePopup from './popupWindows/EditProfilePopup';
 import DeleteProfilePopup from './popupWindows/DeleteProfilePopup';
 
-const UserCard = ({ profileId, image, name, surname, email, description, onDelete, users }) => {
+const UserCard = ({ profileId, image, name, surname, email, description, onDelete, users, isVerified }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [openEditProfileDialog, setOpenEditProfileDialog] = useState(false);
@@ -91,7 +91,7 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
               <strong>
                 {name} {surname}
               </strong>
-              <VerifiedIcon color="primary" />
+              {isVerified && <VerifiedIcon color="primary" />}
             </Typography>
             <Typography>{email}</Typography>
           </Box>
