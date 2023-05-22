@@ -1,7 +1,9 @@
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
 export const getUsers = async () => {
-  const response = await fetch('https://api.poc.graphql.dev.vnplatform.com/graphql', {
+
+  const apiUrl = 'https://api.poc.graphql.dev.vnplatform.com/graphql';
+  const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Authorization': apiToken,

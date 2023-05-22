@@ -1,10 +1,10 @@
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Box } from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -19,7 +19,11 @@ const Nav = ({ check, change }) => {
   return (
     <AppBar className={classes.appBar} position='relative'>
       <Toolbar >
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+        <Box sx={{
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          display: 'flex'
+        }}>
           <ExpandMoreIcon fontSize='large' color='white' />
           <Typography variant="h6">Viral Nation</Typography>
         </Box>

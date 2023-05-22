@@ -1,3 +1,5 @@
+import { createProfileApi } from '../../utils/createProfileApi';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import {
   Button,
@@ -12,8 +14,6 @@ import {
 } from '@mui/material';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import CloseIcon from '@mui/icons-material/Close';
-import { createProfileApi } from '../../utils/createProfileApi';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const CreateProfilePopup = () => {
@@ -95,16 +95,39 @@ const CreateProfilePopup = () => {
         </DialogTitle>
         <DialogContent>
           <Stack spacing={2}>
-            <TextField label="Image Link" fullWidth value={imageLink} onChange={(e) => setImageLink(e.target.value)} />
+            <TextField
+              label="Image Link"
+              fullWidth
+              value={imageLink}
+              onChange={(e) => setImageLink(e.target.value)} />
             <Stack direction="row" spacing={2}>
-              <TextField label="First Name" sx={{ flex: 1 }} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
-              <TextField label="Last Name" sx={{ flex: 1 }} value={lastName} onChange={(e) => setLastName(e.target.value)} />
+              <TextField
+                label="First Name"
+                sx={{ flex: 1 }}
+                onChange={(e) => setFirstName(e.target.value)}
+                value={firstName} />
+              <TextField
+                label="Last Name"
+                sx={{ flex: 1 }}
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)} />
             </Stack>
-            <TextField label="Email" fullWidth value={email} onChange={(e) => setEmail(e.target.value)} />
-            <TextField label="Description" fullWidth value={description} onChange={(e) => setDescription(e.target.value)} />
-            <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <TextField
+              label="Email"
+              fullWidth
+              value={email}
+              onChange={(e) => setEmail(e.target.value)} />
+            <TextField
+              label="Description"
+              fullWidth
+              value={description}
+              onChange={(e) => setDescription(e.target.value)} />
+            <Stack direction="row"
+              alignItems="center"
+              justifyContent="space-between">
               <label>Talent is verified</label>
-              <Switch checked={isVerified} onChange={(e) => setIsVerified(e.target.checked)} />
+              <Switch checked={isVerified}
+                onChange={(e) => setIsVerified(e.target.checked)} />
             </Stack>
           </Stack>
         </DialogContent>

@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
+import { useState } from 'react';
+import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 export default function FilterItems({ users, setUsers }) {
   const [filter, setFilter] = useState('');

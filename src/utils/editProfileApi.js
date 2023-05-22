@@ -2,9 +2,8 @@ const apiToken = process.env.REACT_APP_API_TOKEN;
 
 export const editProfileApi = (updatedProfile) => {
 
+  const apiUrl = 'https://api.poc.graphql.dev.vnplatform.com/graphql'
   const { id, firstName, lastName, email, isVerified, imageUrl, description } = updatedProfile;
-
-  console.log(id)
 
   const requestOptions = {
     method: 'POST',
@@ -53,7 +52,7 @@ export const editProfileApi = (updatedProfile) => {
     })
   };
 
-  return fetch('https://api.poc.graphql.dev.vnplatform.com/graphql', requestOptions)
+  return fetch(apiUrl, requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Error: API request failed');

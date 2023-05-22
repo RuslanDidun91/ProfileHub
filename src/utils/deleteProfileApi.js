@@ -10,9 +10,7 @@ export const deleteProfileApi = async (profileId) => {
 
   const body = {
     query: 'mutation DeleteProfile($deleteProfileId: String!) {\n  deleteProfile(id: $deleteProfileId)\n}',
-    variables: {
-      deleteProfileId: profileId,
-    },
+    variables: {deleteProfileId: profileId}
   };
 
   try {

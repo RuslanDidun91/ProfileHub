@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { getUsers } from '../utils/fetchFromApi';
-import UserCard from '../components/UserCard';
 import { Container, Grid, Box } from '@material-ui/core';
-import Search from '../components/Search'
+import { getUsers } from '../utils/fetchFromApi';
+import { useEffect, useState } from 'react';
 import PaginationComponent from '../components/Pagination';
+import UserCard from '../components/UserCard';
+import Search from '../components/Search'
 
 const UsersPage = () => {
 

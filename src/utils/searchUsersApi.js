@@ -1,5 +1,7 @@
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
+const apiUrl = 'https://api.poc.graphql.dev.vnplatform.com/graphql'
+
 export const searchUsersApi = async (searchText, orderBy = { key: "is_verified", sort: "desc" }, rows = 10, page = 0) => {
   try {
     const requestOptions = {
@@ -44,7 +46,7 @@ export const searchUsersApi = async (searchText, orderBy = { key: "is_verified",
       })
     };
 
-    const response = await fetch('https://api.poc.graphql.dev.vnplatform.com/graphql', requestOptions);
+    const response = await fetch(apiUrl, requestOptions);
     const data = await response.json();
 
     if (!response.ok) {

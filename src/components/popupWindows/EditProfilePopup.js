@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { editProfileApi } from '../../utils/editProfileApi';
+import { getUsers } from '../../utils/fetchFromApi';
+import { useState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import {
   Button,
   Dialog,
@@ -11,12 +14,8 @@ import {
   Stack,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { toast } from 'react-toastify';
-import { editProfileApi } from '../../utils/editProfileApi';
-import { getUsers } from '../../utils/fetchFromApi';
 
 const EditProfileDialog = ({ open, handleClose, users, currentProfileId, setUsers }) => {
-
   // State variable for tracking update status
   const [updateStatus, setUpdateStatus] = useState(null);
 
@@ -64,7 +63,7 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId, setUser
       [name]: value,
     }));
   };
-
+  //extracting id
   const idValue = currentProfileId.id;
 
   const handleEditProfile = () => {
@@ -78,6 +77,7 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId, setUser
       description,
       isVerified,
     };
+
     // Call the editProfileApi function with the updated profile
     editProfileApi(updatedProfile)
       .then(() => {
@@ -95,7 +95,10 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId, setUser
   return (
     <Dialog open={open} onClose={internalHandleClose}>
       <DialogTitle>
-        <IconButton aria-label="close" sx={{ position: 'absolute', right: 8, top: 8 }} onClick={handleClose}>
+        <IconButton
+          aria-label="close"
+          sx={{ position: 'absolute', right: 8, top: 8 }}
+          onClick={handleClose}>
           <CloseIcon />
         </IconButton>
         Edit Profile

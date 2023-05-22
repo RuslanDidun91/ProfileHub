@@ -1,3 +1,4 @@
+import { Container } from '@material-ui/core';
 import React, { useState } from 'react';
 import {
   Typography,
@@ -8,13 +9,12 @@ import {
   MenuItem,
   ListItemIcon,
 } from '@mui/material';
-import { Container } from '@material-ui/core';
+import DeleteProfilePopup from './popupWindows/DeleteProfilePopup';
+import EditProfilePopup from './popupWindows/EditProfilePopup';
 import VerifiedIcon from '@mui/icons-material/Verified';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditProfilePopup from './popupWindows/EditProfilePopup';
-import DeleteProfilePopup from './popupWindows/DeleteProfilePopup';
+import EditIcon from '@mui/icons-material/Edit';
 
 const UserCard = ({ profileId, image, name, surname, email, description, onDelete, users, isVerified, setUsers }) => {
 
@@ -87,9 +87,7 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
           />
           <Box>
             <Typography sx={{ display: 'flex', margin: '7px' }}>
-              <strong>
-                {name} {surname}
-              </strong>
+              <strong>{name} {surname} </strong>
               {isVerified && <VerifiedIcon color="primary" />}
             </Typography>
             <Typography sx={{
@@ -97,7 +95,9 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
               overflow: 'hidden',
               textOverflow: 'ellipsis',
               whiteSpace: 'nowrap',
-            }}>{email}</Typography>
+            }}>
+              {email}
+            </Typography>
           </Box>
           <MoreVertIcon color="action" onClick={handleClick} />
         </Box>
@@ -110,7 +110,6 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
           }}
         >{description}</Box>
       </Card>
-
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -131,7 +130,6 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
           Remove Profile
         </MenuItem>
       </Menu>
-
       <EditProfilePopup
         open={openEditProfileDialog}
         handleClose={handleCloseDialog}

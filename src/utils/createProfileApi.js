@@ -9,7 +9,13 @@ export const createProfileApi = async (profileData) => {
   };
 
   const requestBody = {
-    query: `mutation CreateProfile($firstName: String!, $lastName: String!, $email: String!, $isVerified: Boolean!, $imageUrl: String!, $description: String!) {
+    query: `mutation CreateProfile(
+      $firstName: String!, 
+      $lastName: String!, 
+      $email: String!, 
+      $isVerified: Boolean!, 
+      $imageUrl: String!, 
+      $description: String!) {
     createProfile(
       first_name: $firstName,
       last_name: $lastName,
@@ -27,7 +33,7 @@ export const createProfileApi = async (profileData) => {
       description
     }
   }`,
-    variables: profileData, // Assign profileData directly to the variables property
+    variables: profileData
   };
 
   try {

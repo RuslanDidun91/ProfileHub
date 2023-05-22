@@ -1,4 +1,5 @@
-import React from 'react';
+import { deleteProfileApi } from '../../utils/deleteProfileApi';
+import { toast } from 'react-toastify';
 import {
   Dialog,
   DialogTitle,
@@ -9,8 +10,6 @@ import {
   IconButton
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import { deleteProfileApi } from '../../utils/deleteProfileApi';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
