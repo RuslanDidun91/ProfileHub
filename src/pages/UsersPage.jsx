@@ -59,6 +59,7 @@ const UsersPage = () => {
               onDelete={handleDeleteUser}
               profileId={user.id}
               users={users}
+              setUsers={setUsers}
               isVerified={user.is_verified}
             />
             <br />

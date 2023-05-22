@@ -11,9 +11,14 @@ import {
   Stack,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { toast } from 'react-toastify';
 import { editProfileApi } from '../../utils/editProfileApi';
+import { getUsers } from '../../utils/fetchFromApi';
 
-const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
+const EditProfileDialog = ({ open, handleClose, users, currentProfileId, setUsers }) => {
+
+  // State variable for tracking update status
+  const [updateStatus, setUpdateStatus] = useState(null);
 
   const [inputs, setInputs] = useState({
     firstName: '',
@@ -38,6 +43,15 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
     }
   }, [currentProfileId, users]);
 
+  //make page re-render after profile edited
+  useEffect(() => {
+    if (updateStatus === 'success') {
+      getUsers().then((users) => {
+        setUsers(users);
+      });
+    }
+  }, [updateStatus]);
+
   const { firstName, lastName, email, imageUrl, description, isVerified } = inputs;
 
   const internalHandleClose = () => {
@@ -50,8 +64,8 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
       [name]: value,
     }));
   };
-  
-const idValue = currentProfileId.id;
+
+  const idValue = currentProfileId.id;
 
   const handleEditProfile = () => {
     // Construct the profile object with updated information
@@ -68,10 +82,13 @@ const idValue = currentProfileId.id;
     editProfileApi(updatedProfile)
       .then(() => {
         console.log('Profile updated successfully!');
+        toast.success('Profile edited successfully');
+        setUpdateStatus('success');
         handleClose();
       })
       .catch(error => {
         console.error('Error updating profile:', error);
+        toast.error('Error occured, check your logs');
       });
   };
 

@@ -16,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditProfilePopup from './popupWindows/EditProfilePopup';
 import DeleteProfilePopup from './popupWindows/DeleteProfilePopup';
 
-const UserCard = ({ profileId, image, name, surname, email, description, onDelete, users, isVerified }) => {
+const UserCard = ({ profileId, image, name, surname, email, description, onDelete, users, isVerified, setUsers }) => {
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [openEditProfileDialog, setOpenEditProfileDialog] = useState(false);
@@ -136,6 +136,7 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
         open={openEditProfileDialog}
         handleClose={handleCloseDialog}
         users={users}
+        setUsers={setUsers}
         profileId={profileId}
         currentProfileId={currentProfileId}
       />
