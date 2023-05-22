@@ -1,11 +1,11 @@
 import Nav from './components/Nav';
 import { useState } from "react";
-import { Paper } from "@material-ui/core";
+// import { Paper } from "@material-ui/core";
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import UsersPage from './pages/UsersPage';
-import Search from './components/Search';
+// import Search from './components/Search';
 import CreateProfile from './pages/create-profile';
 import EditProfile from './pages/edit-profile';
 
@@ -23,7 +23,7 @@ function App() {
     <>
       <Router>
         <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
-        <Search />
+        {/* <Search /> */}
         <Switch>
           <Route exact path="/" component={UsersPage} />
           <Route path="/new" component={CreateProfile} />

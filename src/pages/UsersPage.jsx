@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { getUsers } from '../utils/fetchFromApi';
 import UserCard from '../components/UserCard';
 import { Container, Grid } from '@material-ui/core';
+import Search from '../components/Search'
 
 
 const UsersPage = () => {
@@ -34,6 +35,7 @@ const UsersPage = () => {
 
   return (
     <Container maxWidth="md">
+      <Search setUsers={setUsers}/>
       <Grid container spacing={2}>
         {users?.map((user) => (
           <Grid item xs={12} sm={6} md={4} key={user.id}>

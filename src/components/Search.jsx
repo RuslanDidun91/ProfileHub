@@ -1,19 +1,51 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, InputBase, Box } from '@material-ui/core';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { searchUsersApi } from '../utils/searchUsersApi';
 
 import CreateProfilePopup from './popupWindows/CreateProfilePopup';
 
-const Search = () => {
+const Search = ({ setUsers }) => {
   const [searchText, setSearchText] = useState('');
 
-  const handleSearch = () => {
-    // Perform search functionality here
-    console.log('Searching for:', searchText);
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchText.trim() !== '') {
+        search();
+      }
+    }, 700);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchText]);
+
+  // const search = () => {
+  //   searchUsersApi(searchText)
+  //     .then(users => {
+  //       setUsers(users);
+  //       console.log(users)
+  //     })
+  //     .catch(error => {
+  //       console.error('Error searching:', error);
+  //     });
+  //   setSearchText('')
+  // };
+
+  const search = () => {
+    searchUsersApi(searchText)
+      .then(data => {
+        const profiles = data?.data?.getAllProfiles?.profiles || [];
+        setUsers(profiles);
+        console.log(data.data.getAllProfiles.profiles)
+      })
+      .catch(error => {
+        console.error('Error searching:', error);
+      });
+    setSearchText('');
   };
+
 
   const handleInputChange = (event) => {
     setSearchText(event.target.value);
