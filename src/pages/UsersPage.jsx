@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers } from '../utils/fetchFromApi';
 import UserCard from '../components/UserCard';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Box } from '@material-ui/core';
 import Search from '../components/Search'
-
+import PaginationComponent from '../components/Pagination';
 
 const UsersPage = () => {
 
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     getUsers().then((users) => {
@@ -22,7 +24,7 @@ const UsersPage = () => {
     fetchUsers();
   };
 
-//make another api call to receive new users
+  //make another api call to receive new users
   const fetchUsers = () => {
     getUsers()
       .then((users) => {
@@ -33,11 +35,19 @@ const UsersPage = () => {
       });
   };
 
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const slicedUsers = users.slice(startIndex, endIndex);
+
   return (
-    <Container maxWidth="md">
-      <Search setUsers={setUsers} users={users}/>
+    <Container maxWidth="md" >
+      <Search setUsers={setUsers} users={users} />
       <Grid container spacing={2}>
-        {users?.map((user) => (
+        {slicedUsers?.map((user) => (
           <Grid item xs={12} sm={6} md={4} key={user.id}>
             <UserCard
               key={user.id}
@@ -55,6 +65,13 @@ const UsersPage = () => {
           </Grid>
         ))}
       </Grid>
+      <Box >
+        <PaginationComponent
+          currentPage={currentPage}
+          totalPages={Math.ceil(users.length / itemsPerPage)}
+          onPageChange={handlePageChange}
+        />
+      </Box>
     </Container>
   );
 };

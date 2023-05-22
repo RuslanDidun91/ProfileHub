@@ -27,7 +27,7 @@ export const getUsers = async () => {
           key: 'is_verified',
           sort: 'desc'
         },
-        rows: 10,
+        rows: 50,
         page: 0,
         searchString: ''
       })
