@@ -23,7 +23,6 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
   const [openDeleteProfileDialog, setOpenDeleteProfileDialog] = useState(false);
   const [currentProfileId, setCurrentProfileId] = useState(profileId);
 
-
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
     const clickedUser = users.find((user) => user.id === profileId);
@@ -57,9 +56,9 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
     <Container>
       <Card
         sx={{
-          minWidth: '232px',
-          minHeight: '120px',
-          padding: '20px',
+          minWidth: '262px',
+          minHeight: '150px',
+          padding: '10px',
           cursor: 'pointer',
           display: 'flex',
           flexDirection: 'column',
@@ -87,17 +86,29 @@ const UserCard = ({ profileId, image, name, surname, email, description, onDelet
             }}
           />
           <Box>
-            <Typography sx={{ display: 'flex', margin: '5px' }}>
+            <Typography sx={{ display: 'flex', margin: '7px' }}>
               <strong>
                 {name} {surname}
               </strong>
               {isVerified && <VerifiedIcon color="primary" />}
             </Typography>
-            <Typography>{email}</Typography>
+            <Typography sx={{
+              width: '150px',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+            }}>{email}</Typography>
           </Box>
           <MoreVertIcon color="action" onClick={handleClick} />
         </Box>
-        <Box sx={{ textAlign: 'center' }}>{description}</Box>
+        <Box
+          sx={{
+            textAlign: 'center',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >{description}</Box>
       </Card>
 
       <Menu

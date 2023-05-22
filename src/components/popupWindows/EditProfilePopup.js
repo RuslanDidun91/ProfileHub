@@ -16,7 +16,6 @@ import { editProfileApi } from '../../utils/editProfileApi';
 const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
 
   const [inputs, setInputs] = useState({
-    id: currentProfileId,
     firstName: '',
     lastName: '',
     email: '',
@@ -26,9 +25,7 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
   });
 
   useEffect(() => {
-    // Find the user with the matching currentProfileId
     const currentProfile = users.find((user) => user.id === currentProfileId);
-    // Update the inputs state with the profile data
     if (currentProfile) {
       setInputs({
         firstName: currentProfile.first_name,
@@ -53,11 +50,13 @@ const EditProfileDialog = ({ open, handleClose, users, currentProfileId }) => {
       [name]: value,
     }));
   };
+  
+const idValue = currentProfileId.id;
 
   const handleEditProfile = () => {
     // Construct the profile object with updated information
     const updatedProfile = {
-      currentProfileId,
+      id: idValue,
       firstName,
       lastName,
       email,

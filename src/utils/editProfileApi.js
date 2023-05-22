@@ -1,7 +1,10 @@
 const apiToken = process.env.REACT_APP_API_TOKEN;
 
 export const editProfileApi = (updatedProfile) => {
+
   const { id, firstName, lastName, email, isVerified, imageUrl, description } = updatedProfile;
+
+  console.log(id)
 
   const requestOptions = {
     method: 'POST',
