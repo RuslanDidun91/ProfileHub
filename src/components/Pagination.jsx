@@ -7,6 +7,8 @@ const useStyles = makeStyles((theme) => ({
   paginationContainer: {
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: '20px',
+    marginTop: '10px',
   },
 }));
 

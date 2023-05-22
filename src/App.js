@@ -1,35 +1,60 @@
-import Nav from './components/Nav';
-import { useState } from "react";
-import { createTheme } from '@material-ui/core/styles'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import './App.css';
+import React, { useState } from 'react';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import DarkModeToggle from './components/DarkModeToggle';
 import UsersPage from './pages/UsersPage';
-import CreateProfile from './pages/create-profile';
-import EditProfile from './pages/edit-profile';
+import CssBaseline from '@mui/material/CssBaseline';
 
-function App() {
 
-  const [darkMode, setDarkMode] = useState(false);
+const App = () => {
+  const [mode, setMode] = useState('light');
 
-  const theme = createTheme({
+  const toggleColorMode = () => {
+    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+  };
+
+ const theme = createTheme({
     palette: {
-      type: darkMode ? "dark" : "light"
-    }
-  })
+      mode,
+    },
+  });
 
   return (
-    <>
-      <Router>
-        <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
-        <Switch>
-          <Route exact path="/" component={UsersPage} />
-          <Route path="/new" component={CreateProfile} />
-          <Route path="/edit/:id" component={EditProfile} />
-        </Switch>
-      </Router>
-    </>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <DarkModeToggle toggleColorMode={toggleColorMode} />
+      {/* <Nav /> */}
+      <UsersPage />
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
 
+
+// import Nav from './components/Nav';
+// import { useState } from "react";
+// import { createTheme, ThemeProvider } from '@material-ui/core/styles'
+// import './App.css';
+// import UsersPage from './pages/UsersPage';
+
+// function App() {
+
+//   const [darkMode, setDarkMode] = useState(false);
+
+//   const theme = createTheme({
+//     palette: {
+//       type: darkMode ? 'dark' : 'light',
+//     },
+//   });
+
+//   return (
+//     <>
+//     <ThemeProvider theme={theme}>
+//         <Nav check={darkMode} change={() => setDarkMode(!darkMode)} />
+//           <UsersPage />
+//     </ThemeProvider>
+//     </>
+//   );
+// }
+
+// export default App;

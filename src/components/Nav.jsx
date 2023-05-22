@@ -18,7 +18,7 @@ const Nav = ({ check, change }) => {
 
   return (
     <AppBar className={classes.appBar} position='relative'>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar >
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
           <ExpandMoreIcon fontSize='large' color='white' />
           <Typography variant="h6">Viral Nation</Typography>
