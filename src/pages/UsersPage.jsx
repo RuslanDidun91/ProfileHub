@@ -86,6 +86,6 @@ const UsersPage = () => {
       </Box>
     </Container>
   );
-};
+}
 
 export default UsersPage;
