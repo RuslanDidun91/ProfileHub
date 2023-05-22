@@ -1,4 +1,4 @@
-import { Container, Grid, Box } from '@material-ui/core';
+import { Container, Grid, Box, CircularProgress } from '@material-ui/core';
 import { getUsers } from '../utils/fetchFromApi';
 import { useEffect, useState } from 'react';
 import PaginationComponent from '../components/Pagination';
@@ -9,12 +9,17 @@ const UsersPage = () => {
 
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const itemsPerPage = 12;
 
   useEffect(() => {
-    getUsers().then((users) => {
-      setUsers(users);
-    });
+    getUsers()
+      .then((users) => {
+        setUsers(users);
+      })
+      .finally(() => {
+        setLoading(false); 
+      });
   }, []);
 
   const handleDeleteUser = (profileId) => {
@@ -44,29 +49,35 @@ const UsersPage = () => {
   const slicedUsers = users.slice(startIndex, endIndex);
 
   return (
-    <Container maxWidth="md" >
+    <Container maxWidth="md">
       <Search setUsers={setUsers} users={users} />
-      <Grid container spacing={2}>
-        {slicedUsers?.map((user) => (
-          <Grid item xs={12} sm={6} md={4} key={user.id}>
-            <UserCard
-              key={user.id}
-              image={user.image_url}
-              name={user.first_name}
-              surname={user.last_name}
-              email={user.email}
-              description={user.description}
-              onDelete={handleDeleteUser}
-              profileId={user.id}
-              users={users}
-              setUsers={setUsers}
-              isVerified={user.is_verified}
-            />
-            <br />
-          </Grid>
-        ))}
-      </Grid>
-      <Box >
+      {loading ? ( 
+        <Box sx={{ margin: '20px',  height: '80vh'}}>
+          <CircularProgress size={80} />
+        </Box>
+      ) : (
+        <Grid container spacing={2}>
+          {slicedUsers?.map((user) => (
+            <Grid item xs={12} sm={6} md={4} key={user.id}>
+              <UserCard
+                key={user.id}
+                image={user.image_url}
+                name={user.first_name}
+                surname={user.last_name}
+                email={user.email}
+                description={user.description}
+                onDelete={handleDeleteUser}
+                profileId={user.id}
+                users={users}
+                setUsers={setUsers}
+                isVerified={user.is_verified}
+              />
+              <br />
+            </Grid>
+          ))}
+        </Grid>
+      )}
+      <Box>
         <PaginationComponent
           currentPage={currentPage}
           totalPages={Math.ceil(users.length / itemsPerPage)}
