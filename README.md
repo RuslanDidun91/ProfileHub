@@ -26,11 +26,9 @@ Profile Hub is a mobile-responsive React application that utilizes Material UI, 
  Check out this amazing app today via [GitHub link ](https://ruslandidun91.github.io/ProfileHub/) 
  or [Netlify link 👈](https://profile-hub.netlify.app/) 
 
-
 <img src="https://i.imgur.com/p3h3Kfp.png" alt="Logo" width="700" height="500">
 </br>
 <img src="https://i.imgur.com/K4xNLPZ.png" alt="Logo" width="700" height="500">
-
 
 ## Upcoming Features
 
