@@ -19,7 +19,6 @@
 </p>
 
 ## About
-
 Profile Hub is a mobile-responsive React application that utilizes Material UI, offering both dark and light themes. It allows users to perform CRUD operations, enabling them to create, update, and delete their own profiles. Additionally, users can conveniently search and explore numerous other profiles available on the platform.
 
 ## Getting Started
@@ -31,7 +30,6 @@ Profile Hub is a mobile-responsive React application that utilizes Material UI, 
 <img src="https://i.imgur.com/K4xNLPZ.png" alt="Logo" width="700" height="500">
 
 ## Upcoming Features
-
 - [x] Created and set up project, installed all packages and libraries.
 - [x] Made api call to requested API and added CRUD ioperations.
 - [ ] implement my profile page, add ability to upload photos.
